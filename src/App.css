@@ -1,0 +1,18 @@
+.app {
+  background: var(--primary-100);
+  color: var(--primary-900);
+  transition: var(--transition);
+  min-height: 100vh;
+}
+
+.text-light {
+  color: var(--primary-100);
+}
+
+.text-dark {
+  color: var(--primary-900);
+}
+
+.text-grey {
+  color: var(--grey-400);
+}
