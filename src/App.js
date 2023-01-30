@@ -4,30 +4,21 @@ import { googleLogout } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import ThemeToggler from "./components/ThemeToggler";
 import ThemeContext from "./utils/ThemeContext";
-import Landing from "./pages/Landing";
+import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
+import {Error, Landing, Quiz, ProtectedRoute} from './pages'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="app" data-theme={theme}>
-      {/* <GoogleLogin
-        onSuccess={(credentialResponse) => {
-          // console.log(credentialResponse);
-          const token = credentialResponse.credential;
-          const decoded = jwt_decode(token);
-          console.log(decoded);
-        }}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-      />
-      <button className="btn" onClick={() => googleLogout()}>
-        Logout
-      </button> 
-      <ThemeToggler />*/}
-      <Landing />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing/>}/>
+        <Route path="/quiz" element={<ProtectedRoute><Quiz/></ProtectedRoute>}/>
+        <Route path="*" element={<Error/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
