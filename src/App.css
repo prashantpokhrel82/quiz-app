@@ -1,6 +1,6 @@
 .app {
-  background: var(--primary-100);
-  color: var(--primary-900);
+  background: var(--primary-900);
+  color: var(--primary-100);
   transition: var(--transition);
   min-height: 100vh;
 }
@@ -25,35 +25,102 @@
   animation: glow 1s ease-in-out infinite alternate;
 }
 
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-    }
-    to {
-      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-    }
-  }
+.btn {
+  outline: none;
+  border: 1px solid var(--primary-500);
+  padding: 1rem 2rem;
+  min-width: 350px;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  box-shadow: 0 0 10px var(--primary-500);
+  cursor: pointer;
+  transition: var(--transition-300);
+}
 
-  @keyframes wiggle {
-    0%, 7% {
-      transform: rotateZ(0);
-    }
-    15% {
-      transform: rotateZ(-15deg);
-    }
-    20% {
-      transform: rotateZ(10deg);
-    }
-    25% {
-      transform: rotateZ(-10deg);
-    }
-    30% {
-      transform: rotateZ(6deg);
-    }
-    35% {
-      transform: rotateZ(-4deg);
-    }
-    40%, 100% {
-      transform: rotateZ(0);
-    }
+.btn:hover {
+  background: transparent;
+  box-shadow: 0 0 10px 5px var(--primary-500);
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  border: 1px solid transparent;
+  background: var(--primary-500);
+}
+
+.btn-primary:hover {
+  border-color: var(--primary-500);
+}
+
+.section__padding {
+  padding: 6rem 4rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .section__padding {
+    padding: 4rem;
   }
+}
+
+@media screen and (max-width: 800px) {
+  .section__padding {
+    padding: 4rem 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section__padding {
+    padding: 2rem;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #00626a, 0 0 20px #00626a, 0 0 30px #00626a,
+      0 0 40px #00626a, 0 0 50px #00626a, 0 0 60px #00626a, 0 0 70px #00626a;
+  }
+  to {
+    text-shadow: 0 0 20px #00c4d4, 0 0 30px #00c4d4, 0 0 40px #00c4d4,
+      0 0 50px #00c4d4, 0 0 60px #00c4d4, 0 0 70px #00c4d4, 0 0 80px #00c4d4;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
