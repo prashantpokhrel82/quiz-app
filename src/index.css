@@ -48,11 +48,11 @@ a {
   --primary-200: hsl(var(--hsl-value), 71%, 85%);
   --primary-300: hsl(var(--hsl-value), 72%, 75%);
   --primary-400: hsl(var(--hsl-value), 72%, 65%);
-  --primary-500: hsl(var(--hsl-value), 71%, 55%);
+  --primary-500: #00c4d4;
   --primary-600: hsl(var(--hsl-value), 71%, 45%);
   --primary-700: hsl(var(--hsl-value), 72%, 35%);
   --primary-800: hsl(var(--hsl-value), 72%, 25%);
-  --primary-900: hsl(var(--hsl-value), 71%, 15%);
+  --primary-900: hsl(var(--hsl-value), 98%, 0%);
 
   --grey-100: #f1f1f1;
   --grey-200: #d4d4d4;
