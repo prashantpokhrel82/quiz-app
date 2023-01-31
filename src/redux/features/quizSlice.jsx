@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  categories: 'science',
-  difficulty: '',
-    limit: 10,
-
+  difficulty: 'easy',
+  limit: 10,
+  playMode: false,
 };
 
 const quizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
-    // setQuestions: (state,{payload})=>{
-    //     state.questions = payload;
-    // }
+    setLimit:(state, {payload})=>{
+      state.limit = payload;
+    },
+    setDifficulty:(state, {payload})=>{
+      state.difficulty = payload;
+    }
   },
 });
 
 export default quizSlice.reducer;
-// export const { setQuestions } = quizSlice.actions;
+export const { setLimit,setDifficulty } = quizSlice.actions;

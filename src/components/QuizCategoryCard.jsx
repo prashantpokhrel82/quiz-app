@@ -66,7 +66,7 @@ const Wrapper = styled.article`
       rgba(98, 0, 255, 1) 100%
     );
     z-index: 0;
-    animation: rotate 0.5s linear infinite;
+    animation: rotate 1s linear infinite;
   }
 
   .box-content {
@@ -91,5 +91,20 @@ const Wrapper = styled.article`
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  @media screen and (max-width:600px){
+    width: 100%;
+    .box {
+      width: 100%;
+
+      ::after{
+        height: 350%;
+      }
+    }
+
+    p {
+    font-size: 1rem;
+  }
   }
 `;
