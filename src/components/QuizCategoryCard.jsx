@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentCategories } from "../redux/features/quizSlice";
 
 const QuizCategoryCard = ({ categories, categoryTitle }) => {
-  //   console.log(categories, categoryTitle);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handlePlay = () => {
+    dispatch(setCurrentCategories(categories));
+    navigate("/game");
+  };
   return (
     <Wrapper>
-      <div className="box">
+      <div className="box" onClick={handlePlay}>
         <div className="box-content">
           <p className="title">{categoryTitle}</p>
         </div>
@@ -93,18 +101,18 @@ const Wrapper = styled.article`
     }
   }
 
-  @media screen and (max-width:600px){
+  @media screen and (max-width: 600px) {
     width: 100%;
     .box {
       width: 100%;
 
-      ::after{
+      ::after {
         height: 350%;
       }
     }
 
     p {
-    font-size: 1rem;
-  }
+      font-size: 1rem;
+    }
   }
 `;

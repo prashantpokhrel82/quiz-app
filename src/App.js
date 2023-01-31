@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ThemeToggler from "./components/ThemeToggler";
 import ThemeContext from "./utils/ThemeContext";
 import { ToastContainer } from "react-toastify";
-import { Error, Landing, Quiz, ProtectedRoute } from "./pages";
+import { Error, Landing, Quiz, ProtectedRoute, Game } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,6 +19,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Quiz />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <ProtectedRoute>
+                <Game />
               </ProtectedRoute>
             }
           />
