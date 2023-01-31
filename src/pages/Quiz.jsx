@@ -4,14 +4,13 @@ import {
   useGetAllCategoriesQuery,
   useGetRandomQuestionsQuery,
 } from "../redux/services/triviaApi";
-import { Loading, QuizCategories } from "../components";
+import { Loading, Navbar, QuizCategories } from "../components";
 import styled from "styled-components";
-import { setLimit,setDifficulty } from "../redux/features/quizSlice";
+import { setLimit, setDifficulty } from "../redux/features/quizSlice";
 
 const Quiz = () => {
-
   const dispatch = useDispatch();
-  const {limit, difficulty} = useSelector(store=>store.quiz);
+  const { limit, difficulty } = useSelector((store) => store.quiz);
 
   const { data, isFetching, isError } = useGetAllCategoriesQuery();
   if (isFetching) return <Loading center="center" />;
@@ -19,18 +18,50 @@ const Quiz = () => {
   if (data) {
     return (
       <Wrapper className="section__padding">
+        <Navbar />
         <div className="difficulty">
-          <button className={difficulty==="easy" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('easy'))}>Easy</button>
-          <button className={difficulty==="medium" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('medium'))}>Medium</button>
-          <button className={difficulty==="hard" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('hard'))}>Hard</button>
+          <button
+            className={
+              difficulty === "easy" ? "difficulty-btn active" : "difficulty-btn"
+            }
+            onClick={() => dispatch(setDifficulty("easy"))}
+          >
+            Easy
+          </button>
+          <button
+            className={
+              difficulty === "medium"
+                ? "difficulty-btn active"
+                : "difficulty-btn"
+            }
+            onClick={() => dispatch(setDifficulty("medium"))}
+          >
+            Medium
+          </button>
+          <button
+            className={
+              difficulty === "hard" ? "difficulty-btn active" : "difficulty-btn"
+            }
+            onClick={() => dispatch(setDifficulty("hard"))}
+          >
+            Hard
+          </button>
         </div>
 
         <div className="limit-slider">
           <label htmlFor="volume">Number of Questions </label>
           <span>{limit}</span>
-          <input type="range" id="limit" name="limit" min="5" max="20" value={limit} onChange={(e)=>dispatch(setLimit(e.target.value))}/>
+          <input
+            type="range"
+            id="limit"
+            name="limit"
+            min="5"
+            max="20"
+            value={limit}
+            onChange={(e) => dispatch(setLimit(e.target.value))}
+          />
         </div>
-        
+
         <QuizCategories categories={data} />
       </Wrapper>
     );
@@ -42,14 +73,14 @@ export default Quiz;
 const Wrapper = styled.div`
   background: var(--primary-900);
 
-  .difficulty{
+  .difficulty {
     display: flex;
     gap: 2rem;
     width: 100%;
-    justify-content:center;
+    justify-content: center;
   }
 
-  .difficulty-btn{
+  .difficulty-btn {
     border: 1px solid transparent;
     outline: none;
     padding: 1rem 2rem;
@@ -60,65 +91,64 @@ const Wrapper = styled.div`
     cursor: pointer;
     transition: var(--transition-300);
 
-    :hover{
+    :hover {
       transform: scale(1.05);
       background: transparent;
       border-color: var(--primary-500);
     }
-
   }
 
-  .difficulty-btn.active{
-      background: var(--primary-500);    
+  .difficulty-btn.active {
+    background: var(--primary-500);
   }
 
-  .limit-slider{
+  .limit-slider {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 
-    label{
+    label {
       font-size: 1.5rem;
       font-weight: 500;
-      text-align:center;
+      text-align: center;
     }
 
-    span{
+    span {
       font-size: 2rem;
       font-weight: 700;
       color: var(--primary-500);
     }
 
-    input{
+    input {
       -webkit-appearance: none;
       height: 20px;
       width: 350px;
-      border-radius: 2rem;  
+      border-radius: 2rem;
       background: linear-gradient(
-      111deg,
-      #3ed9e7 0%,
-      rgba(16, 169, 255, 1) 50%,
-      #00e1ff 100%
-    );
+        111deg,
+        #3ed9e7 0%,
+        rgba(16, 169, 255, 1) 50%,
+        #00e1ff 100%
+      );
       outline: none;
       opacity: 1;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
+      -webkit-transition: 0.2s;
+      transition: opacity 0.2s;
 
       ::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         width: 25px;
         height: 25px;
-        border-radius: 50%; 
+        border-radius: 50%;
         background: var(--color-white);
         cursor: pointer;
       }
-      
+
       ::-moz-range-thumb {
         width: 25px;
         height: 25px;
@@ -127,23 +157,22 @@ const Wrapper = styled.div`
         cursor: pointer;
       }
     }
-
   }
 
-  @media screen and (max-width: 600px){
-    .difficulty{
+  @media screen and (max-width: 600px) {
+    .difficulty {
       flex-direction: column;
       gap: 1rem;
     }
 
-    .difficulty-btn{
+    .difficulty-btn {
       width: 100%;
     }
-    
-    .limit-slider{
-      gap:0.5rem;
+
+    .limit-slider {
+      gap: 0.5rem;
       margin-bottom: 1rem;
-      input{
+      input {
         width: 100%;
       }
     }
