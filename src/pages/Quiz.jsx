@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useGetAllCategoriesQuery,
@@ -6,11 +6,12 @@ import {
 } from "../redux/services/triviaApi";
 import { Loading, QuizCategories } from "../components";
 import styled from "styled-components";
-import { setQuestions } from "../redux/features/quizSlice";
+import { setLimit,setDifficulty } from "../redux/features/quizSlice";
 
 const Quiz = () => {
-  const [limit, setLimit] = useState(10);
-  const [difficulty, setDifficulty] = useState("easy");
+
+  const dispatch = useDispatch();
+  const {limit, difficulty} = useSelector(store=>store.quiz);
 
   const { data, isFetching, isError } = useGetAllCategoriesQuery();
   if (isFetching) return <Loading center="center" />;
@@ -19,15 +20,15 @@ const Quiz = () => {
     return (
       <Wrapper className="section__padding">
         <div className="difficulty">
-          <button className={difficulty==="easy" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>setDifficulty('easy')}>Easy</button>
-          <button className={difficulty==="medium" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>setDifficulty('medium')}>Medium</button>
-          <button className={difficulty==="hard" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>setDifficulty('hard')}>Hard</button>
+          <button className={difficulty==="easy" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('easy'))}>Easy</button>
+          <button className={difficulty==="medium" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('medium'))}>Medium</button>
+          <button className={difficulty==="hard" ? "difficulty-btn active" : "difficulty-btn"} onClick={()=>dispatch(setDifficulty('hard'))}>Hard</button>
         </div>
 
         <div className="limit-slider">
-          <label for="volume">Number of Questions </label>
+          <label htmlFor="volume">Number of Questions </label>
           <span>{limit}</span>
-          <input type="range" id="limit" name="limit" min="5" max="20" value={limit} onChange={(e)=>setLimit(e.target.value)}/>
+          <input type="range" id="limit" name="limit" min="5" max="20" value={limit} onChange={(e)=>dispatch(setLimit(e.target.value))}/>
         </div>
         
         <QuizCategories categories={data} />
@@ -83,6 +84,7 @@ const Wrapper = styled.div`
     label{
       font-size: 1.5rem;
       font-weight: 500;
+      text-align:center;
     }
 
     span{
@@ -126,5 +128,24 @@ const Wrapper = styled.div`
       }
     }
 
+  }
+
+  @media screen and (max-width: 600px){
+    .difficulty{
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .difficulty-btn{
+      width: 100%;
+    }
+    
+    .limit-slider{
+      gap:0.5rem;
+      margin-bottom: 1rem;
+      input{
+        width: 100%;
+      }
+    }
   }
 `;
