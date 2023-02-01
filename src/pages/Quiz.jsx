@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  useGetAllCategoriesQuery,
-  useGetRandomQuestionsQuery,
-} from "../redux/services/triviaApi";
+import { useGetAllCategoriesQuery } from "../redux/services/triviaApi";
 import { Loading, Navbar, QuizCategories } from "../components";
 import styled from "styled-components";
-import { setLimit, setDifficulty } from "../redux/features/quizSlice";
+import {
+  setLimit,
+  setDifficulty,
+  resetQuiz,
+} from "../redux/features/quizSlice";
+import { resetGame } from "../redux/features/gameSlice";
 
 const Quiz = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetQuiz());
+    dispatch(resetGame());
+  }, [dispatch]);
   const { limit, difficulty } = useSelector((store) => store.quiz);
 
   const { data, isFetching, isError } = useGetAllCategoriesQuery();
@@ -19,6 +25,7 @@ const Quiz = () => {
     return (
       <Wrapper className="section__padding">
         <Navbar />
+        <p>Choose Difficulty Level</p>
         <div className="difficulty">
           <button
             className={
@@ -49,8 +56,10 @@ const Quiz = () => {
         </div>
 
         <div className="limit-slider">
-          <label htmlFor="volume">Number of Questions </label>
-          <span>{limit}</span>
+          <div className="description">
+            <p>Slide below to change number of Questions </p>
+            <span>{limit}</span>
+          </div>
           <input
             type="range"
             id="limit"
@@ -61,7 +70,6 @@ const Quiz = () => {
             onChange={(e) => dispatch(setLimit(e.target.value))}
           />
         </div>
-
         <QuizCategories categories={data} />
       </Wrapper>
     );
@@ -72,8 +80,13 @@ export default Quiz;
 
 const Wrapper = styled.div`
   background: var(--primary-900);
+  p {
+    width: 100%;
+    text-align: center;
+  }
 
   .difficulty {
+    margin-top: 2rem;
     display: flex;
     gap: 2rem;
     width: 100%;
@@ -111,12 +124,15 @@ const Wrapper = styled.div`
     align-items: center;
     width: 100%;
 
-    label {
-      font-size: 1.5rem;
-      font-weight: 500;
-      text-align: center;
+    .description {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
     }
-
     span {
       font-size: 2rem;
       font-weight: 700;
@@ -167,6 +183,8 @@ const Wrapper = styled.div`
 
     .difficulty-btn {
       width: 100%;
+      font-size: 1rem;
+      padding: 0.5rem;
     }
 
     .limit-slider {

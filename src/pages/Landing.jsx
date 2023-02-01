@@ -1,6 +1,5 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleLogout } from "@react-oauth/google";
 import styled from "styled-components";
 import img from "../assets/background.jpg";
 import { BsGoogle } from "react-icons/bs";
