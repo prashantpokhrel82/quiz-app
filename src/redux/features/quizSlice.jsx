@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   difficulty: "easy",
   limit: 5,
-  currentCategories: null,  
-  currentQuestion: 0,
+  currentCategories: null,
 };
 
 const quizSlice = createSlice({
@@ -21,9 +20,9 @@ const quizSlice = createSlice({
       state.currentCategories = payload;
       state.isPlaying = true;
     },
-    
-    setCurrentQuestion: (state, { payload }) => {
-      state.setCurrentQuestion = payload;
+
+    resetQuiz: (state) => {
+      return initialState;
     },
   },
 });
@@ -33,6 +32,6 @@ export const {
   setLimit,
   setDifficulty,
   setCurrentCategories,
-  setCurrentQuestion,
   updateScore,
+  resetQuiz,
 } = quizSlice.actions;
