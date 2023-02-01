@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ImHome } from "react-icons/im";
 import { RxSpeakerLoud, RxSpeakerOff } from "react-icons/rx";
-import { toggleSound, setCurrentCategories } from "../redux/features/quizSlice";
+import {setCurrentCategories } from "../redux/features/quizSlice";
+import { toggleSound } from "../redux/features/gameSlice";
 import {BiLogOut} from 'react-icons/bi'
 import { logoutUser } from "../redux/features/userSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { soundOn } = useSelector((store) => store.quiz);
+  const { soundOn } = useSelector((store) => store.game);
   const {picture} = useSelector(store=>store.user.user);
   const [showLogout, setShowLogout] = useState(false);
   return (

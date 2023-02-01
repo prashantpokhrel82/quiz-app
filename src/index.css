@@ -65,6 +65,8 @@ a {
   --grey-900: #0e0e0e;
 
   --color-golden: #ffdf00;
+  --color-success: #408140;
+  --color-danger: #df4759;
 
   /* Transition */
   --transition: 0.1s ease;

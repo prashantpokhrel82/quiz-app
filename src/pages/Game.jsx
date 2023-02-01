@@ -8,7 +8,7 @@ import { useGetRandomQuestionsQuery } from "../redux/services/triviaApi";
 const Game = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isPlaying, currentCategories, difficulty, limit, soundOn } =
+  const { isPlaying, currentCategories, difficulty, limit } =
     useSelector((store) => store.quiz);
 
   const {
@@ -34,12 +34,18 @@ const Game = () => {
     );
 
   console.log(questions);
+  
   return (
     <Wrapper className="section__padding">
       <Navbar />
-      {questions.map((question) => (
-        <Question key={question.id} {...question} />
-      ))}
+      {questions.map((question,index) => 
+        {
+          const {incorrectAnswers, correctAnswer} = question;
+          const answers = [...incorrectAnswers, correctAnswer].sort(
+            () => Math.random() - 0.5
+          );
+          return <Question key={question.id} {...question} answers = {answers} currentQuestionNumber={index+1}/>}
+      )}
     </Wrapper>
   );
 };
