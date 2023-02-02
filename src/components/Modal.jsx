@@ -4,37 +4,41 @@ import styled from "styled-components";
 import { GiAchievement } from "react-icons/gi";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { ImHome } from "react-icons/im";
-import { setCurrentCategories, resetQuiz } from "../redux/features/quizSlice";
-import { resetGame } from "../redux/features/gameSlice";
+import { setCurrentCategories } from "../redux/features/quizSlice";
 import { useNavigate } from "react-router-dom";
 
 const Modal = ({ setShowModal, limit }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { score } = useSelector((store) => store.game);
+  const { difficulty, currentCategories } = useSelector((store) => store.quiz);
+
   return (
     <Wrapper>
       <div className="modal">
-        <RiCloseCircleLine
-          className="close-ico"
-          onClick={() => setShowModal(false)}
-        />
-        <div className="circle">
-          <div className="topp">
-            <GiAchievement />
-            <h1>
-              {score} / {limit}
-            </h1>
-          </div>
+        <div className="title">
+          <h2>{difficulty} Mode</h2>
+          <p>{currentCategories}</p>
         </div>
+
         <div className="bottom">
           <ImHome
             onClick={() => {
               dispatch(setCurrentCategories(null));
-              dispatch(resetQuiz());
-              dispatch(resetGame());
               navigate("/quiz");
             }}
+          />
+          <div className="circle">
+            <div className="topp">
+              <GiAchievement className="medal" />
+              <h1>
+                {score} / {limit}
+              </h1>
+            </div>
+          </div>
+          <RiCloseCircleLine
+            className="close-ico"
+            onClick={() => setShowModal(false)}
           />
         </div>
       </div>
@@ -68,10 +72,14 @@ const Wrapper = styled.div`
     justify-content: center;
   }
 
+  .title {
+    color: var(--primary-500);
+    p {
+      text-transform: uppercase;
+    }
+  }
+
   .close-ico {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
     color: var(--color-white);
     font-size: 2rem;
     cursor: pointer;
@@ -104,17 +112,17 @@ const Wrapper = styled.div`
     color: var(--color-white);
     font-size: 5rem;
 
-    svg {
+    .medal {
       color: var(--primary-500);
       animation: beat 1s ease-in-out infinite alternate;
-    }
-
-    h1 {
-      font-size: 5rem;
     }
   }
 
   .bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     svg {
       color: var(--color-white);
       font-size: 3rem;
@@ -125,6 +133,29 @@ const Wrapper = styled.div`
         color: var(--primary-500);
         transform: scale(1.1);
       }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .bottom {
+      flex-direction: column-reverse;
+      gap: 2rem;
+    }
+    .close-ico {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .topp {
+      h1 {
+        font-size: 3.5rem;
+      }
+    }
+
+    .circle {
+      height: 250px;
+      width: 250px;
     }
   }
 `;

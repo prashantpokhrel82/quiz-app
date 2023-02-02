@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import ThemeToggler from "./components/ThemeToggler";
-import ThemeContext from "./utils/ThemeContext";
 import { ToastContainer } from "react-toastify";
 import { Error, Landing, Quiz, ProtectedRoute, Game } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,9 +5,8 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const { theme } = useContext(ThemeContext);
   return (
-    <div className="app" data-theme={theme}>
+    <div className="app">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -33,7 +29,7 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 }

@@ -23,7 +23,7 @@ const Landing = () => {
     <Wrapper>
       <div className="content">
         <h1 className="glow">Trivia Quiz</h1>
-        <p>
+        <p className="sub-title">
           Enjoy a fun and intuitive gameplay experience accessible via any
           device
         </p>
@@ -32,6 +32,7 @@ const Landing = () => {
           Login with Google
         </button>
       </div>
+      <p className="credits">Developed by Prashant Pokhrel 2023.</p>
     </Wrapper>
   );
 };
@@ -80,7 +81,7 @@ const Wrapper = styled.div`
     }
   }
 
-  p {
+  p.sub-title {
     color: var(--grey-100);
     font-size: 2rem;
   }
@@ -94,6 +95,15 @@ const Wrapper = styled.div`
     svg {
       margin-right: 2rem;
     }
+  }
+
+  p.credits {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
   }
 
   @media screen and (max-width: 600px) {
