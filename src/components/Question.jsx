@@ -61,7 +61,7 @@ const Question = ({
           </h4>
         </div>
         <p>{category}</p>
-        <h3 className="question">{question}</h3>
+        <h4 className="question">{question}</h4>
         <div className="ans-container" onChange={(e) => onChangeValue(e)}>
           {answers.map((ans, index) => (
             <div key={ans + index}>
@@ -158,7 +158,6 @@ const Wrapper = styled.section`
   }
 
   .question {
-    line-height: 3rem;
     font-weight: 600;
     margin-bottom: 3rem;
   }
@@ -270,6 +269,8 @@ const Wrapper = styled.section`
   }
 
   @media screen and (max-width: 600px) {
+    padding: 1rem;
+
     .ans-container label {
       font-size: 1rem;
     }
@@ -277,6 +278,22 @@ const Wrapper = styled.section`
     .top {
       h2 {
         margin-left: 0;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        .highlight {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    .finish {
+      width: 100%;
+      button {
+        width: 100%;
+        min-width: unset;
+        display: block;
       }
     }
   }

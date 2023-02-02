@@ -21,38 +21,17 @@ a {
 }
 
 /* Color pallet */
-/* Dark theme */
-[data-theme="theme-dark"] {
-  --primary-100: hsl(var(--hsl-value), 71%, 15%);
-  --primary-200: hsl(var(--hsl-value), 72%, 25%);
-  --primary-300: hsl(var(--hsl-value), 72%, 35%);
-  --primary-400: hsl(var(--hsl-value), 71%, 45%);
-  --primary-500: hsl(var(--hsl-value), 71%, 55%);
-  --primary-600: hsl(var(--hsl-value), 72%, 65%);
-  --primary-700: hsl(var(--hsl-value), 72%, 75%);
-  --primary-800: hsl(var(--hsl-value), 71%, 85%);
-  --primary-900: hsl(var(--hsl-value), 69%, 95%);
-}
 
 :root {
   /* Font Family */
   --font-body: "Poppins", "sans-serif";
 
-  --hsl-value: 220;
-
-  --color-white: hsl(var(--hsl-value), 100%, 95%);
-  --color-dark: hsl(var(--hsl-value), 100%, 5%);
+  --color-white: #fafafa;
 
   /* Light Theme */
-  --primary-100: hsl(var(--hsl-value), 69%, 95%);
-  --primary-200: hsl(var(--hsl-value), 71%, 85%);
-  --primary-300: hsl(var(--hsl-value), 72%, 75%);
-  --primary-400: hsl(var(--hsl-value), 72%, 65%);
+  --primary-100: #fefefe;
   --primary-500: #00c4d4;
-  --primary-600: hsl(var(--hsl-value), 71%, 45%);
-  --primary-700: hsl(var(--hsl-value), 72%, 35%);
-  --primary-800: hsl(var(--hsl-value), 72%, 25%);
-  --primary-900: hsl(var(--hsl-value), 98%, 0%);
+  --primary-900: #050508;
 
   --grey-100: #f1f1f1;
   --grey-200: #d4d4d4;

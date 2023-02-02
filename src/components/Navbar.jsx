@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ImHome } from "react-icons/im";
-import { RxSpeakerLoud, RxSpeakerOff } from "react-icons/rx";
 import { setCurrentCategories } from "../redux/features/quizSlice";
-import { toggleSound } from "../redux/features/gameSlice";
 import { BiLogOut } from "react-icons/bi";
 import { logoutUser } from "../redux/features/userSlice";
+import AudioPlay from "./AudioPlay";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { soundOn } = useSelector((store) => store.game);
   const { picture } = useSelector((store) => store.user.user);
   const [showLogout, setShowLogout] = useState(false);
+
   return (
     <Wrapper>
       <ImHome
@@ -44,17 +43,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        {soundOn ? (
-          <RxSpeakerLoud
-            className="ico"
-            onClick={() => dispatch(toggleSound())}
-          />
-        ) : (
-          <RxSpeakerOff
-            className="ico"
-            onClick={() => dispatch(toggleSound())}
-          />
-        )}
+        <AudioPlay />
       </div>
     </Wrapper>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Loading, Navbar, Pagination, Question } from "../components";
 import { useGetRandomQuestionsQuery } from "../redux/services/triviaApi";
@@ -25,7 +25,7 @@ const Game = () => {
     if (!currentCategories) {
       navigate("/quiz");
     }
-  }, [currentCategories]);
+  }, [currentCategories, navigate]);
 
   if (isFetching) return <Loading center="center" />;
   if (isError)

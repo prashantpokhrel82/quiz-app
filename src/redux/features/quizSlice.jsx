@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   difficulty: "easy",
-  limit: 5,
+  limit: 10,
   currentCategories: null,
 };
 

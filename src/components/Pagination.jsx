@@ -49,6 +49,8 @@ const Wrapper = styled.div`
 
   .page-numbers {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
   }
 
