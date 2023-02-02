@@ -97,7 +97,7 @@ const Question = ({
             {isSubmitted ? "Submitted" : "Submit"}
           </button>
         </div>
-        {questionNumber == limit && isSubmitted && (
+        {questionNumber === +limit && isSubmitted && (
           <div className="finish">
             <button
               type="button"
