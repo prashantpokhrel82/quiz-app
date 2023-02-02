@@ -22,8 +22,8 @@ const Landing = () => {
   return (
     <Wrapper>
       <div className="content">
-        <h1 className="glow">Trivia Quiz</h1>
-        <p className="sub-title">
+        <h1 className="glow title">Trivia Quiz</h1>
+        <p className="subtitle">
           Enjoy a fun and intuitive gameplay experience accessible via any
           device
         </p>
@@ -71,7 +71,7 @@ const Wrapper = styled.div`
     z-index: 10;
   }
 
-  h1 {
+  .title {
     font-size: 6rem;
     margin-bottom: 3rem;
     line-height: 6rem;
@@ -81,7 +81,7 @@ const Wrapper = styled.div`
     }
   }
 
-  p.sub-title {
+  .subtitle {
     color: var(--grey-100);
     font-size: 2rem;
   }
@@ -97,7 +97,7 @@ const Wrapper = styled.div`
     }
   }
 
-  p.credits {
+  .credits {
     position: absolute;
     bottom: 2rem;
     left: 50%;
@@ -106,15 +106,28 @@ const Wrapper = styled.div`
     width: 100%;
   }
 
+  @media screen and (max-width: 1280px) {
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  }
   @media screen and (max-width: 600px) {
-    h1 {
+    .content {
+      gap: 1rem;
+    }
+    .title {
       font-size: 4rem;
       margin-bottom: 2rem;
-      line-height: 3rem;
+      line-height: 4.5rem;
     }
 
-    p {
+    .subtitle {
       font-size: 1.2rem;
+    }
+
+    button {
+      width: 100%;
+      font-size: 1rem;
     }
   }
 `;
